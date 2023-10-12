@@ -28,8 +28,11 @@ namespace Digital_Vending_Machine
             InitializeComponent();
 
             m_ProductItems = new List<Product_Item>();
-            this.MinimumSize = new Size(1200, 1000);
-            this.SizeChanged += (sender, e) => { CalculateAutoScrollMinSize(); };
+            this.MinimumSize = new Size(900, 800);
+            this.SizeChanged += (sender, e) => 
+            { 
+                CalculateAutoScrollMinSize();
+            };
 
             AddProductItem("Rowntrees-Fruit-Pastilles.png", "Rowntree's Fruit Pastilles", 1.50, 10);
             AddProductItem("Rowntrees-Jelly-Tots.png", "Rowntree's Jelly Tots", 1.50, 10);
@@ -78,7 +81,7 @@ namespace Digital_Vending_Machine
                 height += control.MinimumSize.Height;
             }
 
-            Shop_Items_Layout.AutoScrollMinSize = new Size(300, height / (Shop_Items_Layout.RowCount / 3));
+            Shop_Items_Layout.AutoScrollMinSize = new Size(300, height / (Shop_Items_Layout.RowCount < 3 ? 3 : Shop_Items_Layout.RowCount / 3));
         }
 
         private void AddProductItem(string imageFile, string name, double price, int quantity)
@@ -137,7 +140,7 @@ namespace Digital_Vending_Machine
             m_SlideOutPanel = new Panel();
             m_SlideOutPanel.Width = 0;
             m_SlideOutPanel.Dock = DockStyle.Left;
-            m_SlideOutPanel.BackColor = Color.LightGray;
+            m_SlideOutPanel.BackColor = SystemColors.Control;
             this.Controls.Add(m_SlideOutPanel);
 
             m_SlideOutTimer = new Timer();
@@ -158,6 +161,11 @@ namespace Digital_Vending_Machine
 
         private void Checkout_Button_Click(object sender, EventArgs e)
         {
+            if (Basket_Listbox.Items.Count == 0)
+            {
+                return;
+            }
+
             m_SlideOutTimer.Start();
             Shop_Items_Panel.Enabled = !Shop_Items_Panel.Enabled;
             Checkout_Button.Enabled = !Checkout_Button.Enabled;
@@ -210,6 +218,13 @@ namespace Digital_Vending_Machine
                 }
 
                 m_TotalPrice = 0.0;
+
+                if (m_IsPanelVisible)
+                {
+                    m_SlideOutTimer.Start();
+                    Shop_Items_Panel.Enabled = !Shop_Items_Panel.Enabled;
+                    Checkout_Button.Enabled = !Checkout_Button.Enabled;
+                }
             }
         }
     }
