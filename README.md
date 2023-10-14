@@ -10,8 +10,7 @@
 
 <p align="center">
   <a href="#key-features">Key Features</a> ▪︎
-  <a href="#installation">Installation</a> ▪︎
-  <a href="#libraries-used">Libraries Used</a>
+  <a href="#installation">Installation</a>
 </p>
 
 <p align="center">
@@ -46,5 +45,3 @@ $ cd Cpp-Drawing-Application
 > **Note**
 > Open the '.sln' once cloned as this will open the project directly in [Visual Studio](https://visualstudio.microsoft.com/).
 
-## Libraries Used
-* [wxWidgets](https://www.wxwidgets.org/) used for the UI components of the application.
