@@ -116,8 +116,10 @@
             this.Price_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Price_TextBox.Location = new System.Drawing.Point(427, 445);
             this.Price_TextBox.Name = "Price_TextBox";
+            this.Price_TextBox.ReadOnly = true;
             this.Price_TextBox.Size = new System.Drawing.Size(204, 15);
             this.Price_TextBox.TabIndex = 5;
+            this.Price_TextBox.Text = "Total: £0.00";
             this.Price_TextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Digital_Vending_Machine
@@ -133,7 +135,7 @@
             this.Controls.Add(this.Checkout_Button);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Digital_Vending_Machine";
-            this.Text = "Digital Vending Machine";
+            this.Text = "30048598 • Digital Vending Machine";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -52,9 +52,7 @@
     <Compile Include="Digital_Vending_Machine.Designer.cs">
       <DependentUpon>Digital_Vending_Machine.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProductItem.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="GroupBox_Button.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Digital_Vending_Machine.resx">
