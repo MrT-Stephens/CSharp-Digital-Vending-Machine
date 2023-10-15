@@ -46,9 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Digital_Vending_Machine.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Digital_Vending_Machine.cs" />
     <Compile Include="Digital_Vending_Machine.Designer.cs">
       <DependentUpon>Digital_Vending_Machine.cs</DependentUpon>
     </Compile>

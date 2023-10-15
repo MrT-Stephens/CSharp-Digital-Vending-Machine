@@ -1,10 +1,51 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Digital_Vending_Machine
 {
+    class Basket
+    {
+        private double m_TotalPrice;
+        private List<Product_Item> m_Items;
+
+        public Basket()
+        {
+            m_TotalPrice = 0.0;
+            m_Items = new List<Product_Item>();
+        }
+
+        public void AddItem(Product_Item item)
+        {
+            m_TotalPrice += item.price;
+            m_Items.Add(item);
+        }
+
+        public void RemoveItem(Product_Item item)
+        {
+            m_TotalPrice -= item.price;
+            m_Items.Remove(item);
+        }
+
+        public void MinusAmount(double value)
+        {
+            m_TotalPrice -= value;
+        }
+
+        public void Clear()
+        {
+            m_TotalPrice = 0;
+            m_Items = new List<Product_Item>();
+        }
+
+        public double total 
+        { 
+            get { return m_TotalPrice; } 
+        }
+    }
+
     public partial class Digital_Vending_Machine : Form
     {
         const string m_ImageDirectory = "C:\\Users\\MrTst\\Documents\\C++ Dev\\Digital-Vending-Machine\\Digital-Vending-Machine\\App_Images\\";
@@ -354,6 +395,11 @@ namespace Digital_Vending_Machine
                     Checkout_Button.Enabled = !Checkout_Button.Enabled;
                 }
             }
+        }
+
+        private void OutputFile(string filePath)
+        {
+
         }
     }
 }

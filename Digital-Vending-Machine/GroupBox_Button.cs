@@ -28,7 +28,7 @@ namespace Digital_Vending_Machine
         protected string m_Name;
         protected Button m_Button;
 
-        public GroupBox_Button(string imagePath, string name)
+        public GroupBox_Button(string imagePath, string name) : base()
         {
             m_Name = name;
 
