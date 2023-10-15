@@ -13,6 +13,7 @@ namespace Digital_Vending_Machine
         {
             m_Type = customString;
         }
+
         public Type variable
         {
             get { return m_Type; }
