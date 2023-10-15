@@ -6,27 +6,95 @@ using System.Windows.Forms;
 
 namespace Digital_Vending_Machine
 {
-    class Basket
+    internal class Basket_Hander
     {
         private double m_TotalPrice;
-        private List<Product_Item> m_Items;
+        private List<KeyValuePair<Product_Item, int>> m_Items;   // Key = Product_Item, Value = Quantity
 
-        public Basket()
+        public Basket_Hander()
         {
             m_TotalPrice = 0.0;
-            m_Items = new List<Product_Item>();
+            m_Items = new List<KeyValuePair<Product_Item, int>>();
         }
 
         public void AddItem(Product_Item item)
         {
             m_TotalPrice += item.price;
-            m_Items.Add(item);
+
+            int index = m_Items.FindIndex(pair => pair.Key.name == item.name);
+
+            if (index != -1)
+            {
+                m_Items[index] = new KeyValuePair<Product_Item, int>(item, m_Items[index].Value + 1);
+            }
+            else
+            {
+                m_Items.Add(new KeyValuePair<Product_Item, int>(item, 1));
+            }
         }
 
-        public void RemoveItem(Product_Item item)
+        public void RemoveItem(Product_Item item, bool removeAll)
         {
-            m_TotalPrice -= item.price;
-            m_Items.Remove(item);
+            int index = m_Items.FindIndex(pair => pair.Key.name == item.name);
+
+            if (removeAll)
+            {
+                if (index != -1)
+                {
+                    m_TotalPrice -= item.price * m_Items[index].Value;
+
+                    m_Items.RemoveAt(index);
+                }
+            }
+            else
+            {
+                m_TotalPrice -= item.price;
+
+                if (index != -1)
+                {
+                    if (m_Items[index].Value == 1)
+                    {
+                        m_Items.RemoveAt(index);
+                    }
+                    else
+                    {
+                        m_Items[index] = new KeyValuePair<Product_Item, int>(item, m_Items[index].Value - 1);
+                    }
+                }
+            }
+        }
+
+        public void RemoveItemByIndex(int index, bool removeAll)
+        { 
+            if (removeAll)
+            {
+                m_TotalPrice -= m_Items[index].Key.price * m_Items[index].Value;
+
+                m_Items.RemoveAt(index);
+            }
+            else
+            {
+                m_TotalPrice -= m_Items[index].Key.price;
+
+                if (m_Items[index].Value == 1)
+                {
+                    m_Items.RemoveAt(index);
+                }
+                else
+                {
+                    m_Items[index] = new KeyValuePair<Product_Item, int>(m_Items[index].Key, m_Items[index].Value - 1);
+                }
+            }
+        }
+
+        public void PrintBasketToListBox(ListBox listBox)
+        {
+            listBox.Items.Clear();
+
+            foreach (KeyValuePair<Product_Item, int> pair in m_Items)
+            {
+                listBox.Items.Add($"• {pair.Key.name} x{pair.Value}");
+            }
         }
 
         public void MinusAmount(double value)
@@ -34,10 +102,30 @@ namespace Digital_Vending_Machine
             m_TotalPrice -= value;
         }
 
+        public void Cancel(List<Product_Item> items)
+        {
+            foreach (KeyValuePair<Product_Item, int> pair in m_Items)
+            {
+                int index = items.FindIndex(item => item.name == pair.Key.name);
+
+                if (index != -1)
+                {
+                    items[index].stockCount += pair.Value;
+                }
+            }
+
+            Clear();
+        }
+
         public void Clear()
         {
             m_TotalPrice = 0;
-            m_Items = new List<Product_Item>();
+            m_Items = new List<KeyValuePair<Product_Item, int>>();
+        }
+
+        public int count
+        {
+            get { return m_Items.Count; }
         }
 
         public double total 
@@ -66,16 +154,17 @@ namespace Digital_Vending_Machine
         private Timer m_TitleDateTimeTimer;
 
         // Other form items
-        private double m_TotalPrice = 0.0;
-        private List<int> m_PreviousProductQuantities;
+        private Basket_Hander m_BasketHander;
         private ContextMenu m_ListBoxContextMenu;
-        private MenuItem m_ListBoxContextMenuRemoveItem;
+        private MenuItem m_ListBoxRemoveOne;
+        private MenuItem m_ListBoxRemoveAll;
 
         public Digital_Vending_Machine()
         {
             InitializeComponent();
 
             m_CoinItems = new List<Coin_Item>();
+            m_BasketHander = new Basket_Hander();
             m_ProductItems = new List<Product_Item>();
             this.MinimumSize = new Size(900, 800);
             this.SizeChanged += (sender, e) =>
@@ -122,16 +211,6 @@ namespace Digital_Vending_Machine
             SetUpListBoxContextMenu();
 
             CalculateAutoScrollMinSize();
-        }
-
-        private void PopulatePreviousProductQuantities()
-        {
-            m_PreviousProductQuantities = new List<int>();
-
-            foreach (Product_Item productItem in m_ProductItems)
-            {
-                m_PreviousProductQuantities.Add(productItem.stockCount);
-            }
         }
 
         private void CalculateAutoScrollMinSize()
@@ -181,18 +260,13 @@ namespace Digital_Vending_Machine
 
                 control.click += (sender, e) =>
                 {
-                    if (Basket_Listbox.Items.Count == 0)
-                    {
-                        PopulatePreviousProductQuantities();
-                    }
-
                     Product_Item productItem = (Product_Item)sender;
 
-                    Basket_Listbox.Items.Add($"• {productItem.name}");
+                    m_BasketHander.AddItem(productItem);
 
-                    m_TotalPrice += productItem.price;
+                    Price_TextBox.Text = $"Total: {m_BasketHander.total:C}";
 
-                    Price_TextBox.Text = $"Total: {m_TotalPrice:C}";
+                    m_BasketHander.PrintBasketToListBox(Basket_Listbox);
 
                     Basket_Listbox.SelectedIndex = Basket_Listbox.Items.Count - 1;
                     Basket_Listbox.SelectedIndex = -1;
@@ -251,37 +325,47 @@ namespace Digital_Vending_Machine
         private void SetUpListBoxContextMenu()
         {
             m_ListBoxContextMenu = new ContextMenu();
-            m_ListBoxContextMenuRemoveItem = new MenuItem("Remove Item");
+            m_ListBoxRemoveAll = new MenuItem("Remove All");
+            m_ListBoxRemoveOne = new MenuItem("Remove One");
 
-            m_ListBoxContextMenuRemoveItem.Click += (sender, e) =>
+            m_ListBoxRemoveAll.Click += (sender, e) =>
             {
                 if (Basket_Listbox.SelectedIndex == -1)
                 {
                     return;
                 }
-                else if (Basket_Listbox.Items.Count > 0)
+                else if (m_BasketHander.count > 0)
                 {
-                    string item = Basket_Listbox.SelectedItem.ToString();
+                    int index = Basket_Listbox.SelectedIndex;
 
-                    item = item.Substring(item.IndexOf('•') + 2);
+                    m_BasketHander.RemoveItemByIndex(index, true);
 
-                    foreach (Product_Item productItem in m_ProductItems)
-                    {
-                        if (productItem.productName == item)
-                        {
-                            productItem.stockCount++;
+                    Price_TextBox.Text = $"Total: {m_BasketHander.total:C}";
 
-                            m_TotalPrice -= productItem.price;
-
-                            Price_TextBox.Text = $"Total: {m_TotalPrice:C}";
-                        }
-                    }
-
-                    Basket_Listbox.Items.RemoveAt(Basket_Listbox.SelectedIndex);
+                    m_BasketHander.PrintBasketToListBox(Basket_Listbox);
                 }
             };
 
-            m_ListBoxContextMenu.MenuItems.Add(m_ListBoxContextMenuRemoveItem);
+            m_ListBoxRemoveOne.Click += (sender, e) =>
+            {
+                if (Basket_Listbox.SelectedIndex == -1)
+                {
+                    return;
+                }
+                else if (m_BasketHander.count > 0)
+                {
+                    int index = Basket_Listbox.SelectedIndex;
+
+                    m_BasketHander.RemoveItemByIndex(index, false);
+
+                    Price_TextBox.Text = $"Total: {m_BasketHander.total:C}";
+
+                    m_BasketHander.PrintBasketToListBox(Basket_Listbox);
+                }
+            };
+
+            m_ListBoxContextMenu.MenuItems.Add(m_ListBoxRemoveAll);
+            m_ListBoxContextMenu.MenuItems.Add(m_ListBoxRemoveOne);
 
             Basket_Listbox.ContextMenu = m_ListBoxContextMenu;
         }
@@ -292,25 +376,26 @@ namespace Digital_Vending_Machine
 
             if (double.TryParse(e.String.Remove(0, 1), out coinValue))
             {
-                m_TotalPrice -= coinValue;
-                Price_TextBox.Text = $"Total: {m_TotalPrice:C}";
+                m_BasketHander.MinusAmount(coinValue);
 
-                if (m_TotalPrice > 0)
+                Price_TextBox.Text = $"Total: {m_BasketHander.total:C}";
+
+                if (m_BasketHander.total > 0)
                 {
                     return;
                 }
-                else if (m_TotalPrice == 0)
+                else if (m_BasketHander.total == 0)
                 {
                     MessageBox.Show(this, "Thank you for your purchase!", "Purchase Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                else if (m_TotalPrice < 0)
+                else if (m_BasketHander.total < 0)
                 {
-                    MessageBox.Show(this, $"Thank you for your purchase! Your change is {Math.Abs(m_TotalPrice):C}", "Purchase Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(this, $"Thank you for your purchase! Your change is {Math.Abs(m_BasketHander.total):C}", "Purchase Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
                 Basket_Listbox.Items.Clear();
                 Price_TextBox.Text = $"Total: {0.00:C}";
-                m_TotalPrice = 0.0;
+                m_BasketHander.Clear();
                 m_SlideOutTimer.Start();
                 Shop_Items_Panel.Enabled = !Shop_Items_Panel.Enabled;
                 Checkout_Button.Enabled = !Checkout_Button.Enabled;
@@ -380,13 +465,7 @@ namespace Digital_Vending_Machine
             {
                 Basket_Listbox.Items.Clear();
                 Price_TextBox.Text = $"Total: {0.00:C}";
-
-                foreach (Product_Item productItem in m_ProductItems)
-                {
-                    productItem.stockCount = m_PreviousProductQuantities[m_ProductItems.IndexOf(productItem)];
-                }
-
-                m_TotalPrice = 0.0;
+                m_BasketHander.Cancel(m_ProductItems);
 
                 if (m_IsPanelVisible)
                 {

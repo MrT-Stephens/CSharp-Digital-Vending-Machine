@@ -134,7 +134,6 @@
             this.Controls.Add(this.Cancel_Order_Button);
             this.Controls.Add(this.Basket_Listbox);
             this.Controls.Add(this.Checkout_Button);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Digital_Vending_Machine";
             this.Text = "30048598 • Digital Vending Machine";
