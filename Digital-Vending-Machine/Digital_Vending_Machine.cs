@@ -203,6 +203,7 @@ namespace Digital_Vending_Machine
             foreach (Coin_Item coin in m_CoinItems)
             {
                 m_SlideOutLayout.Controls.Add(coin);
+                coin.click += OnClickOrDrop;
             }
 
             m_PaymentBox = new Coin_Slot(Properties.Resources.Coin_Slot);
