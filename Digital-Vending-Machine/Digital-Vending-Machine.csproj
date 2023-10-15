@@ -46,11 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Digital_Vending_Machine.cs" />
+    <Compile Include="BasketHandler.cs" />
+    <Compile Include="Digital_Vending_Machine.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Digital_Vending_Machine.Designer.cs">
       <DependentUpon>Digital_Vending_Machine.cs</DependentUpon>
     </Compile>
-    <Compile Include="GroupBox_Button.cs" />
+    <Compile Include="GroupBoxButton.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Digital_Vending_Machine.resx">
@@ -58,17 +61,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -77,6 +81,102 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\1p.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\1pound.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\2p.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\2pound.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\5p.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\5pound.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\10p.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\10pound.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\20p.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\20pound.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\50p.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Coin-Slot.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Fruittella-Duo-Stix.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Haribo-Giant-Strawbs-Fruit-Gums.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Haribo-Maoam-Joystixx.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Haribo-Maoam-Pinballs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Haribo-Starmix-175G.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Haribo-Supermix.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Haribo-Tangfastics-175G.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Maynards-Bassetts-Jelly-Babies.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Maynards-Bassetts-Sports-Mix.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Maynards-Bassetts-Wine-Gums-Juicies.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Rowntrees-Fruit-Gums.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Rowntrees-Fruit-Pastilles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Rowntrees-Fruit-Pastilles-Strawberry-&amp;-Blackcurrant.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Rowntrees-Jelly-Tots.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Rowntrees-Randoms-Sweets.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Skittles-Crazy-Sour-Fruit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Skittles-Fruits.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Starburst-Original-Fruit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Swizzels-Drumstick-Squashies.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Swizzels-Luscious-Lollies.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

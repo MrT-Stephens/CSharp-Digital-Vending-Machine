@@ -11,6 +11,7 @@ namespace Digital_Vending_Machine
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+        
         [STAThread]
         static void Main()
         {

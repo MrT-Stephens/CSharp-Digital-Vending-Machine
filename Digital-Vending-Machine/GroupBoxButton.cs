@@ -1,25 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Digital_Vending_Machine
 {
-    // Custom event arguments class for the coin drop and click events
-    public class StringEventArgs : EventArgs
+    // Custom event arguments class for the coin drag / drop and click events
+    public class TypeEventArgs<Type> : EventArgs    // Templated to accept any type.
     {
-        private string m_String;
+        private Type m_Type;
 
-        public StringEventArgs(string customString)
+        public TypeEventArgs(Type customString)
         {
-            m_String = customString;
+            m_Type = customString;
         }
-        public string String
+        public Type variable
         {
-            get { return m_String; }
+            get { return m_Type; }
         }
     } 
 
@@ -28,14 +24,14 @@ namespace Digital_Vending_Machine
         protected string m_Name;
         protected Button m_Button;
 
-        public GroupBox_Button(string imagePath, string name) : base()
+        public GroupBox_Button(System.Drawing.Image image, string name) : base()
         {
             m_Name = name;
 
             // Set up properties for the button
             m_Button = new Button()
             {
-                BackgroundImage = Image.FromFile(imagePath),
+                BackgroundImage = image,
                 BackgroundImageLayout = ImageLayout.Zoom,
                 Dock = DockStyle.Fill,
                 Enabled = true,
@@ -73,7 +69,7 @@ namespace Digital_Vending_Machine
         private event EventHandler m_ButtonClickEvent;
 
         // Constructor
-        public Product_Item(string imagePath, string name, double price, int quantity) : base(imagePath, name)
+        public Product_Item(System.Drawing.Image image, string name, double price, int quantity) : base(image, name)
         {
             productName = name;
             m_Quantity = quantity;
@@ -142,10 +138,10 @@ namespace Digital_Vending_Machine
     {
         // Private variables
         private double m_Value;
-        private event EventHandler<StringEventArgs> m_ButtonClickEvent;
+        private event EventHandler<TypeEventArgs<double>> m_ButtonClickEvent;
 
         // Constructor
-        public Coin_Item(string imagePath, string name, double value) : base(imagePath, name)
+        public Coin_Item(System.Drawing.Image image, string name, double value) : base(image, name)
         {
             m_Value = value;
 
@@ -159,7 +155,7 @@ namespace Digital_Vending_Machine
         {
             if (e.Button == MouseButtons.Left)
             {
-                m_Button.DoDragDrop(m_Button.Text, DragDropEffects.Copy);
+                m_Button.DoDragDrop(this.value, DragDropEffects.Copy);
             }
         }
 
@@ -169,7 +165,7 @@ namespace Digital_Vending_Machine
             get { return m_Value; }
         }
 
-        public EventHandler<StringEventArgs> click
+        public EventHandler<TypeEventArgs<double>> click
         {
             get { return m_ButtonClickEvent; }
             set { m_ButtonClickEvent += value; }
@@ -178,10 +174,10 @@ namespace Digital_Vending_Machine
 
     internal class Coin_Slot : GroupBox_Button
     {
-        private event EventHandler<StringEventArgs> m_DropEvent;
+        private event EventHandler<TypeEventArgs<double>> m_DropEvent;
 
         // Constructor
-        public Coin_Slot(string imagePath) : base(imagePath, "Payment")
+        public Coin_Slot(System.Drawing.Image image) : base(image, "Payment")
         {
             this.MinimumSize = new Size(100, 100);
             m_Button.AllowDrop = true;
@@ -192,7 +188,7 @@ namespace Digital_Vending_Machine
         // Event handler for the button dragging
         private void OnButtonDragEnter(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(DataFormats.Text))
+            if (e.Data.GetDataPresent(typeof(double)))
             {
                 e.Effect = DragDropEffects.Copy;
             }
@@ -201,14 +197,14 @@ namespace Digital_Vending_Machine
         // Event handler for the button dropping
         private void OnButtonDragDrop(object sender, DragEventArgs e)
         {
-            if (e.Data.GetData(typeof(string)) is string text)
+            if (e.Data.GetData(typeof(double)) is double value)
             {
-                m_DropEvent?.Invoke(null, new StringEventArgs(text));
+                m_DropEvent?.Invoke(null, new TypeEventArgs<double>(value));
             }
         }
 
         // Getters and setters
-        public EventHandler<StringEventArgs> drop
+        public EventHandler<TypeEventArgs<double>> drop
         {
             get { return m_DropEvent; }
             set { m_DropEvent += value; }

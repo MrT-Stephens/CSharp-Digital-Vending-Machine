@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -68,9 +69,10 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -85,9 +87,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,9 +112,106 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Coin_Slot" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Coin-Slot.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Fruittella_Duo_Stix" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Fruittella-Duo-Stix.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Haribo_Giant_Strawbs_Fruit_Gums" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Haribo-Giant-Strawbs-Fruit-Gums.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Haribo_Maoam_Joystixx" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Haribo-Maoam-Joystixx.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Haribo_Maoam_Pinballs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Haribo-Maoam-Pinballs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Haribo_Starmix_175G" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Haribo-Starmix-175G.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Haribo_Supermix" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Haribo-Supermix.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Haribo_Tangfastics_175G" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Haribo-Tangfastics-175G.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Maynards_Bassetts_Jelly_Babies" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Maynards-Bassetts-Jelly-Babies.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Maynards_Bassetts_Sports_Mix" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Maynards-Bassetts-Sports-Mix.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Maynards_Bassetts_Wine_Gums_Juicies" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Maynards-Bassetts-Wine-Gums-Juicies.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Rowntrees_Fruit_Gums" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Rowntrees-Fruit-Gums.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Rowntrees_Fruit_Pastilles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Rowntrees-Fruit-Pastilles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Rowntrees_Fruit_Pastilles_Strawberry___Blackcurrant" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Rowntrees-Fruit-Pastilles-Strawberry-&amp;-Blackcurrant.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Rowntrees_Jelly_Tots" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Rowntrees-Jelly-Tots.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Rowntrees_Randoms_Sweets" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Rowntrees-Randoms-Sweets.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Skittles_Crazy_Sour_Fruit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Skittles-Crazy-Sour-Fruit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Skittles_Fruits" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Skittles-Fruits.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Starburst_Original_Fruit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Starburst-Original-Fruit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Swizzels_Drumstick_Squashies" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Swizzels-Drumstick-Squashies.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Swizzels_Luscious_Lollies" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Swizzels-Luscious-Lollies.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_10p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\10p.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_10pound" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\10pound.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_1p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\1p.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_1pound" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\1pound.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_20p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\20p.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_20pound" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\20pound.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_2p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\2p.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_2pound" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\2pound.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_50p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\50p.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_5p" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\5p.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_5pound" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\5pound.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
