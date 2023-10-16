@@ -43,6 +43,7 @@ namespace Digital_Vending_Machine
 
         public void RemoveItem(Product_Item item, bool removeAll)   // Remove an item by the item's object.
         {
+            int quantity = 0;
             int index = m_Items.FindIndex(pair => pair.Key.productName == item.productName);
 
             if (removeAll)  // If 'removeAll' is true it will completely remove the item without checking the quantity.
@@ -50,6 +51,8 @@ namespace Digital_Vending_Machine
                 if (index != -1)
                 {
                     m_TotalPrice -= item.price * m_Items[index].Value;
+
+                    quantity = m_Items[index].Value;
 
                     m_Items.RemoveAt(index);
                 }
@@ -68,21 +71,31 @@ namespace Digital_Vending_Machine
                     {
                         m_Items[index] = new KeyValuePair<Product_Item, int>(item, m_Items[index].Value - 1);
                     }
+
+                    quantity = 1;
                 }
             }
+
+            item.stockCount += quantity;    // Adds the removed quantity back onto the original item.
         }
 
-        public void RemoveItemByIndex(int index, bool removeAll)    // Remove an item by the item's index within the basket.
+        public KeyValuePair<string, int> RemoveItemByIndex(int index, bool removeAll)    // Remove an item by the item's index within the basket.
         {
+            KeyValuePair<string, int> pair = new KeyValuePair<string, int>();
+
             if (removeAll)  // If 'removeAll' is true it will completely remove the item without checking the quantity.
             {
                 m_TotalPrice -= m_Items[index].Key.price * m_Items[index].Value;
+
+                pair = new KeyValuePair<string, int>(m_Items[index].Key.productName, m_Items[index].Value);
 
                 m_Items.RemoveAt(index);
             }
             else            // If 'removeAll' is false.
             {
                 m_TotalPrice -= m_Items[index].Key.price;
+
+                pair = new KeyValuePair<string, int>(m_Items[index].Key.productName, 1);
 
                 if (m_Items[index].Value == 1)  // Checks if the quantity is equal to one. If true it will remove the item.
                 {
@@ -93,6 +106,8 @@ namespace Digital_Vending_Machine
                     m_Items[index] = new KeyValuePair<Product_Item, int>(m_Items[index].Key, m_Items[index].Value - 1);
                 }
             }
+
+            return pair;    // Will return the quantity that needs to be re-added to the item.
         }
 
         public void PrintBasketToListBox(ListBox listBox)   // Prints all items in the basket to a 'ListBox' in the format: E.g. "• Item One x2".

@@ -31,6 +31,7 @@ namespace Digital_Vending_Machine
         private ContextMenu m_ListBoxContextMenu;
         private MenuItem m_ListBoxRemoveOne;
         private MenuItem m_ListBoxRemoveAll;
+        private Timer m_TimeoutTimer;
 
         #endregion
 
@@ -81,6 +82,7 @@ namespace Digital_Vending_Machine
 
             // Initializing other components like all shop items, slide out panel, all coins, etc.
             SetUpShopItems();
+            SetUpTimeoutTimer();
             SetUpSlideOutPanel();
             SetUpTitleDateTime();
             SetUpListBoxContextMenu();
@@ -160,6 +162,11 @@ namespace Digital_Vending_Machine
 
                     m_BasketListBox.SelectedIndex = m_BasketListBox.Items.Count - 1;
                     m_BasketListBox.SelectedIndex = -1;
+
+                    if (m_BasketHander.count > 0)
+                    {
+                        m_TimeoutTimer.Start();
+                    }
                 };
             }
 
@@ -230,7 +237,11 @@ namespace Digital_Vending_Machine
                 {
                     int index = m_BasketListBox.SelectedIndex;
 
-                    m_BasketHander.RemoveItemByIndex(index, true);
+                    {
+                        KeyValuePair<string, int> pair = m_BasketHander.RemoveItemByIndex(index, true);
+
+                        m_ProductItems.Find((item) => item.productName == pair.Key).stockCount += pair.Value;
+                    }
 
                     m_PriceTextBox.Text = $"Total: {m_BasketHander.total:C}";
 
@@ -248,7 +259,11 @@ namespace Digital_Vending_Machine
                 {
                     int index = m_BasketListBox.SelectedIndex;
 
-                    m_BasketHander.RemoveItemByIndex(index, false);
+                    {
+                        KeyValuePair<string, int> pair = m_BasketHander.RemoveItemByIndex(index, false);
+
+                        m_ProductItems.Find((item) => item.productName == pair.Key).stockCount += pair.Value;
+                    }
 
                     m_PriceTextBox.Text = $"Total: {m_BasketHander.total:C}";
 
@@ -271,6 +286,28 @@ namespace Digital_Vending_Machine
             m_TitleDateTimeTimer.Interval = 1000;
             m_TitleDateTimeTimer.Tick += TitleDateTimeTimer_Tick;
             m_TitleDateTimeTimer.Start();
+        }
+
+        private void SetUpTimeoutTimer()
+        {
+            m_TimeoutTimer = new Timer();
+            m_TimeoutTimer.Interval = 180000;
+            m_TimeoutTimer.Tick += (sender, e) =>
+            {
+                m_TimeoutTimer.Stop();
+
+                m_BasketListBox.Items.Clear();
+                m_PriceTextBox.Text = $"Total: {0.00:C}";
+                m_BasketHander.Cancel(m_ProductItems);
+
+                if (m_IsPanelVisible)
+                {
+                    m_SlideOutTimer.Start();
+                    m_ShopItemsPanel.Enabled = !m_ShopItemsPanel.Enabled;
+                    m_CheckoutButton.Enabled = !m_CheckoutButton.Enabled;
+                    m_BasketListBox.Enabled = !m_BasketListBox.Enabled;
+                }
+            };
         }
 
         #endregion
