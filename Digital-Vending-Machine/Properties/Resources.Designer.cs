@@ -193,6 +193,16 @@ namespace Digital_Vending_Machine.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Graze_Dark_Chocolate_Cherry_Tart {
+            get {
+                object obj = ResourceManager.GetObject("Graze_Dark_Chocolate_Cherry_Tart", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Haribo_Giant_Strawbs_Fruit_Gums {
             get {
                 object obj = ResourceManager.GetObject("Haribo_Giant_Strawbs_Fruit_Gums", resourceCulture);
@@ -276,6 +286,126 @@ namespace Digital_Vending_Machine.Properties {
         internal static System.Drawing.Bitmap Maynards_Bassetts_Wine_Gums_Juicies {
             get {
                 object obj = ResourceManager.GetObject("Maynards_Bassetts_Wine_Gums_Juicies", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Monster_Aussie_Lemonade_Energy___Juice {
+            get {
+                object obj = ResourceManager.GetObject("Monster_Aussie_Lemonade_Energy___Juice", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Monster_Energy_Drink_Lewis_Hamilton {
+            get {
+                object obj = ResourceManager.GetObject("Monster_Energy_Drink_Lewis_Hamilton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Monster_Energy_Drink_Mango_Loco {
+            get {
+                object obj = ResourceManager.GetObject("Monster_Energy_Drink_Mango_Loco", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Monster_Energy_Drink_Monarch {
+            get {
+                object obj = ResourceManager.GetObject("Monster_Energy_Drink_Monarch", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Monster_Energy_Drink_Pipeline_Punch {
+            get {
+                object obj = ResourceManager.GetObject("Monster_Energy_Drink_Pipeline_Punch", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Monster_Energy_Drink_Ultra {
+            get {
+                object obj = ResourceManager.GetObject("Monster_Energy_Drink_Ultra", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Monster_Energy_Drink_Ultra_Fiesta {
+            get {
+                object obj = ResourceManager.GetObject("Monster_Energy_Drink_Ultra_Fiesta", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Monster_Energy_Drink_Ultra_Gold {
+            get {
+                object obj = ResourceManager.GetObject("Monster_Energy_Drink_Ultra_Gold", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Monster_Energy_Drink_Ultra_Rosa {
+            get {
+                object obj = ResourceManager.GetObject("Monster_Energy_Drink_Ultra_Rosa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Monster_Energy_Drink_Ultra_Watermelon {
+            get {
+                object obj = ResourceManager.GetObject("Monster_Energy_Drink_Ultra_Watermelon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Pringles_Pop___Go_Original {
+            get {
+                object obj = ResourceManager.GetObject("Pringles_Pop___Go_Original", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Pringles_Sour_Cream___Onion {
+            get {
+                object obj = ResourceManager.GetObject("Pringles_Sour_Cream___Onion", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -376,6 +506,76 @@ namespace Digital_Vending_Machine.Properties {
         internal static System.Drawing.Bitmap Swizzels_Luscious_Lollies {
             get {
                 object obj = ResourceManager.GetObject("Swizzels_Luscious_Lollies", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Twix_Kingsize_Bar {
+            get {
+                object obj = ResourceManager.GetObject("Twix_Kingsize_Bar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Twix_Xtra_White_Chocolate_Biscuit {
+            get {
+                object obj = ResourceManager.GetObject("Twix_Xtra_White_Chocolate_Biscuit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Walkers_Baked_Cheese___Onion {
+            get {
+                object obj = ResourceManager.GetObject("Walkers_Baked_Cheese___Onion", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Walkers_Baked_Salted {
+            get {
+                object obj = ResourceManager.GetObject("Walkers_Baked_Salted", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Walkers_Max_Punchy_Paprika {
+            get {
+                object obj = ResourceManager.GetObject("Walkers_Max_Punchy_Paprika", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Walkers_Monster_Munch_Pickled_Onion {
+            get {
+                object obj = ResourceManager.GetObject("Walkers_Monster_Munch_Pickled_Onion", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Walkers_Sensations_Thai_Sweet_Chilli {
+            get {
+                object obj = ResourceManager.GetObject("Walkers_Sensations_Thai_Sweet_Chilli", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

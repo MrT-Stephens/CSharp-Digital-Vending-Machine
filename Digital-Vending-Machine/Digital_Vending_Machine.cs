@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Digital_Vending_Machine
 {
@@ -28,9 +29,9 @@ namespace Digital_Vending_Machine
 
         // Other form items
         private Basket_Hander m_BasketHander;
-        private ContextMenu m_ListBoxContextMenu;
-        private MenuItem m_ListBoxRemoveOne;
-        private MenuItem m_ListBoxRemoveAll;
+        private ContextMenuStrip m_DataGridViewContextMenu;
+        private ToolStripMenuItem m_DataGridViewRemoveOne;
+        private ToolStripMenuItem m_DataGridViewRemoveAll;
         private Timer m_TimeoutTimer;
 
         #endregion
@@ -66,6 +67,26 @@ namespace Digital_Vending_Machine
             AddProductItem(Properties.Resources.Maynards_Bassetts_Jelly_Babies, "Maynards Bassetts Jelly Babies", 1.19, 119);
             AddProductItem(Properties.Resources.Maynards_Bassetts_Sports_Mix, "Maynards Bassetts Sports Mix", 1.43, 14);
             AddProductItem(Properties.Resources.Maynards_Bassetts_Wine_Gums_Juicies, "Maynards Bassetts Wine Gums", 1.05, 14);
+            AddProductItem(Properties.Resources.Walkers_Baked_Salted, "Walkers Baked Salted", 0.95, 29);
+            AddProductItem(Properties.Resources.Twix_Xtra_White_Chocolate_Biscuit, "Twix Xtra White Chocolate Biscuit", 1.00, 78);
+            AddProductItem(Properties.Resources.Walkers_Monster_Munch_Pickled_Onion, "Walkers Monster Munch Pickled Onion", 0.98, 43);
+            AddProductItem(Properties.Resources.Pringles_Pop___Go_Original, "Pringles Pop & Go Original", 0.66, 34);
+            AddProductItem(Properties.Resources.Twix_Kingsize_Bar, "Twix Kingsize Bar", 1.00, 120);
+            AddProductItem(Properties.Resources.Walkers_Baked_Cheese___Onion, "Walkers Baked Cheese & Onion", 0.95, 89);
+            AddProductItem(Properties.Resources.Walkers_Max_Punchy_Paprika, "Walkers Max Punchy Paprika", 0.99, 34);
+            AddProductItem(Properties.Resources.Pringles_Sour_Cream___Onion, "Pringles Sour Cream & Onion", 0.79, 39);
+            AddProductItem(Properties.Resources.Graze_Dark_Chocolate_Cherry_Tart, "Graze Dark Chocolate Cherry Tart", 1.67, 13);
+            AddProductItem(Properties.Resources.Walkers_Sensations_Thai_Sweet_Chilli, "Walkers Sensations Thai Sweet Chilli", 0.99, 467);
+            AddProductItem(Properties.Resources.Monster_Energy_Drink_Lewis_Hamilton, "Monster Energy Drink Lewis Hamilton", 1.99, 77);
+            AddProductItem(Properties.Resources.Monster_Energy_Drink_Ultra, "Monster Energy Drink Ultra", 1.99, 99);
+            AddProductItem(Properties.Resources.Monster_Energy_Drink_Ultra_Rosa, "Monster Energy Drink Ultra Rosa", 1.99, 34);
+            AddProductItem(Properties.Resources.Monster_Energy_Drink_Mango_Loco, "Monster Energy Drink Mango Loco", 1.99, 45);
+            AddProductItem(Properties.Resources.Monster_Energy_Drink_Pipeline_Punch, "Monster Energy Drink Pipeline Punch", 1.99, 67);
+            AddProductItem(Properties.Resources.Monster_Energy_Drink_Ultra_Gold, "Monster Energy Drink Ultra Gold", 1.99, 12);
+            AddProductItem(Properties.Resources.Monster_Energy_Drink_Ultra_Fiesta, "Monster Energy Drink Ultra Fiesta", 1.99, 98);
+            AddProductItem(Properties.Resources.Monster_Aussie_Lemonade_Energy___Juice, "Monster Aussie Lemonade Energy & Juice", 1.99, 45);
+            AddProductItem(Properties.Resources.Monster_Energy_Drink_Monarch, "Monster Energy Drink Monarch", 1.99, 34);
+            AddProductItem(Properties.Resources.Monster_Energy_Drink_Ultra_Watermelon, "Monster Energy Drink Ultra Watermelon", 1.99, 89);
 
             // Adding all coin items. First: Image resource, Second: Coin name, Third: Coin value.
             AddCoinItem(Properties.Resources._5pound, "Five Pound", 5.00);
@@ -158,10 +179,7 @@ namespace Digital_Vending_Machine
 
                     m_PriceTextBox.Text = $"Total: {m_BasketHander.total:C}";
 
-                    m_BasketHander.PrintBasketToListBox(m_BasketListBox);
-
-                    m_BasketListBox.SelectedIndex = m_BasketListBox.Items.Count - 1;
-                    m_BasketListBox.SelectedIndex = -1;
+                    m_BasketHander.PrintBasketTo(m_BasketDataGridVeiw);
 
                     if (m_BasketHander.count > 0)
                     {
@@ -223,58 +241,42 @@ namespace Digital_Vending_Machine
 
         private void SetUpListBoxContextMenu()
         {
-            m_ListBoxContextMenu = new ContextMenu();
-            m_ListBoxRemoveAll = new MenuItem("Remove All");
-            m_ListBoxRemoveOne = new MenuItem("Remove One");
+            m_DataGridViewContextMenu = new ContextMenuStrip();
+            m_DataGridViewRemoveAll = new ToolStripMenuItem("Remove All");
+            m_DataGridViewRemoveOne = new ToolStripMenuItem("Remove One");
 
-            m_ListBoxRemoveAll.Click += (sender, e) =>
+            m_DataGridViewRemoveAll.Click += (sender, e) =>
             {
-                if (m_BasketListBox.SelectedIndex == -1)
+                if (m_BasketHander.count > 0)
                 {
-                    return;
-                }
-                else if (m_BasketHander.count > 0)
-                {
-                    int index = m_BasketListBox.SelectedIndex;
+                    string name = m_BasketDataGridVeiw.SelectedRows[0].Cells[0].Value.ToString();
 
-                    {
-                        KeyValuePair<string, int> pair = m_BasketHander.RemoveItemByIndex(index, true);
-
-                        m_ProductItems.Find((item) => item.productName == pair.Key).stockCount += pair.Value;
-                    }
+                    m_BasketHander.RemoveItem(m_ProductItems.Find((product) => product.productName == name), true);
 
                     m_PriceTextBox.Text = $"Total: {m_BasketHander.total:C}";
 
-                    m_BasketHander.PrintBasketToListBox(m_BasketListBox);
+                    m_BasketHander.PrintBasketTo(m_BasketDataGridVeiw);
                 }
             };
 
-            m_ListBoxRemoveOne.Click += (sender, e) =>
+            m_DataGridViewRemoveOne.Click += (sender, e) =>
             {
-                if (m_BasketListBox.SelectedIndex == -1)
+                if (m_BasketHander.count > 0)
                 {
-                    return;
-                }
-                else if (m_BasketHander.count > 0)
-                {
-                    int index = m_BasketListBox.SelectedIndex;
+                    string name = m_BasketDataGridVeiw.SelectedRows[0].Cells[0].Value.ToString();
 
-                    {
-                        KeyValuePair<string, int> pair = m_BasketHander.RemoveItemByIndex(index, false);
-
-                        m_ProductItems.Find((item) => item.productName == pair.Key).stockCount += pair.Value;
-                    }
+                    m_BasketHander.RemoveItem(m_ProductItems.Find((product) => product.productName == name), false);
 
                     m_PriceTextBox.Text = $"Total: {m_BasketHander.total:C}";
 
-                    m_BasketHander.PrintBasketToListBox(m_BasketListBox);
+                    m_BasketHander.PrintBasketTo(m_BasketDataGridVeiw);
                 }
             };
 
-            m_ListBoxContextMenu.MenuItems.Add(m_ListBoxRemoveAll);
-            m_ListBoxContextMenu.MenuItems.Add(m_ListBoxRemoveOne);
+            m_DataGridViewContextMenu.Items.Add(m_DataGridViewRemoveAll);
+            m_DataGridViewContextMenu.Items.Add(m_DataGridViewRemoveOne);
 
-            m_BasketListBox.ContextMenu = m_ListBoxContextMenu;
+            m_BasketDataGridVeiw.ContextMenuStrip = m_DataGridViewContextMenu;
         }
 
         private void SetUpTitleDateTime()
@@ -296,7 +298,8 @@ namespace Digital_Vending_Machine
             {
                 m_TimeoutTimer.Stop();
 
-                m_BasketListBox.Items.Clear();
+                m_StatusTextBox.Text = "Please select your items";
+                m_BasketDataGridVeiw.Rows.Clear();
                 m_PriceTextBox.Text = $"Total: {0.00:C}";
                 m_BasketHander.Cancel(m_ProductItems);
 
@@ -305,7 +308,7 @@ namespace Digital_Vending_Machine
                     m_SlideOutTimer.Start();
                     m_ShopItemsPanel.Enabled = !m_ShopItemsPanel.Enabled;
                     m_CheckoutButton.Enabled = !m_CheckoutButton.Enabled;
-                    m_BasketListBox.Enabled = !m_BasketListBox.Enabled;
+                    m_BasketDataGridVeiw.Enabled = !m_BasketDataGridVeiw.Enabled;
                 }
             };
         }
@@ -323,7 +326,7 @@ namespace Digital_Vending_Machine
                 height += control.MinimumSize.Height;
             }
 
-            m_ShopItemsLayout.AutoScrollMinSize = new Size(300, height / (m_ShopItemsLayout.RowCount < 3 ? 3 : m_ShopItemsLayout.RowCount / 3));
+            m_ShopItemsLayout.AutoScrollMinSize = new Size(300, height / (m_ShopItemsLayout.RowCount < 5 ? 5 : m_ShopItemsLayout.RowCount / 5));
         }
 
         private void OnClickOrDrop(object sender, TypeEventArgs<double> e)  // Event handler for either a coin click or a coin drag / drop.
@@ -348,26 +351,28 @@ namespace Digital_Vending_Machine
             m_BasketHander.PrintBasketToFile(s_LogOrdersFileName);  // Logs the order to a log file.
 
             // Resets the application, but not the item quantities.
-            m_BasketListBox.Items.Clear();
+            m_StatusTextBox.Text = "Please select your items";
+            m_BasketDataGridVeiw.Rows.Clear();
             m_PriceTextBox.Text = $"Total: {0.00:C}";
             m_BasketHander.Clear();
             m_SlideOutTimer.Start();    // Slides the slide out panel back in.
             m_ShopItemsPanel.Enabled = !m_ShopItemsPanel.Enabled;
             m_CheckoutButton.Enabled = !m_CheckoutButton.Enabled;
-            m_BasketListBox.Enabled = !m_BasketListBox.Enabled;
+            m_BasketDataGridVeiw.Enabled = !m_BasketDataGridVeiw.Enabled;
         }
 
         private void Checkout_Button_Click(object sender, EventArgs e)  // Checkout button event handler.
         {
-            if (m_BasketListBox.Items.Count == 0)
+            if (m_BasketDataGridVeiw.Rows.Count == 0)
             {
                 return;
             }
 
+            m_StatusTextBox.Text = "Please pay for your order";
             m_SlideOutTimer.Start();    // Slides out the slide out panel, so user can pay for there items.
             m_ShopItemsPanel.Enabled = !m_ShopItemsPanel.Enabled;
             m_CheckoutButton.Enabled = !m_CheckoutButton.Enabled;
-            m_BasketListBox.Enabled = !m_BasketListBox.Enabled;
+            m_BasketDataGridVeiw.Enabled = !m_BasketDataGridVeiw.Enabled;
         }
 
         private void SlideOutTimer_Tick(object sender, EventArgs e) // Slide out panel timer event handler, gets called every 1ms.
@@ -409,14 +414,15 @@ namespace Digital_Vending_Machine
 
         private void CancelOrderButton_Click(object sender, EventArgs e)    // Cancel button event handler function.
         {                                                                   // Will display a dialog if there is items in the basket to ask if they are sure.
-            if (m_BasketListBox.Items.Count == 0)                           // Clears the basket, updates total text box, and resets the slide out panel.
+            if (m_BasketDataGridVeiw.Rows.Count == 0)                           // Clears the basket, updates total text box, and resets the slide out panel.
             {
                 return;
             }
 
             if (MessageBox.Show(this, "Are you sure you want to cancel your order?", "Cancel Order", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                m_BasketListBox.Items.Clear();
+                m_StatusTextBox.Text = "Please select your items";
+                m_BasketDataGridVeiw.Rows.Clear();
                 m_PriceTextBox.Text = $"Total: {0.00:C}";
                 m_BasketHander.Cancel(m_ProductItems);
 
@@ -425,7 +431,7 @@ namespace Digital_Vending_Machine
                     m_SlideOutTimer.Start();
                     m_ShopItemsPanel.Enabled = !m_ShopItemsPanel.Enabled;
                     m_CheckoutButton.Enabled = !m_CheckoutButton.Enabled;
-                    m_BasketListBox.Enabled = !m_BasketListBox.Enabled;
+                    m_BasketDataGridVeiw.Enabled = !m_BasketDataGridVeiw.Enabled;
                 }
             }
         }

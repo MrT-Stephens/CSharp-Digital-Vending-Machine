@@ -214,5 +214,65 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Graze-Dark-Chocolate-Cherry-Tart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Pringles-Pop-_-Go-Original.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Pringles-Sour-Cream-_-Onion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Twix-Kingsize-Bar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Twix-Xtra-White-Chocolate-Biscuit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Walkers-Baked-Cheese-_-Onion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Walkers-Baked-Salted.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Walkers-Max-Punchy-Paprika.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Walkers-Monster-Munch-Pickled-Onion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Walkers-Sensations-Thai-Sweet-Chilli.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Monster-Aussie-Lemonade-Energy-&amp;-Juice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Monster-Energy-Drink-Lewis-Hamilton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Monster-Energy-Drink-Mango-Loco.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Monster-Energy-Drink-Monarch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Monster-Energy-Drink-Pipeline-Punch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Monster-Energy-Drink-Ultra.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Monster-Energy-Drink-Ultra-Fiesta.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Monster-Energy-Drink-Ultra-Gold.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Monster-Energy-Drink-Ultra-Rosa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\Monster-Energy-Drink-Ultra-Watermelon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

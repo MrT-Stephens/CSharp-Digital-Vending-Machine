@@ -110,13 +110,23 @@ namespace Digital_Vending_Machine
             return pair;    // Will return the quantity that needs to be re-added to the item.
         }
 
-        public void PrintBasketToListBox(ListBox listBox)   // Prints all items in the basket to a 'ListBox' in the format: E.g. "• Item One x2".
+        public void PrintBasketTo(ListBox listBox)   // Prints all items in the basket to a 'ListBox' in the format: E.g. "• Item One x2".
         {
             listBox.Items.Clear();
 
             foreach (KeyValuePair<Product_Item, int> pair in m_Items)
             {
                 listBox.Items.Add($"• {pair.Key.name} x{pair.Value}");
+            }
+        }
+
+        public void PrintBasketTo(DataGridView gridView)    // Prints all items in the basket to a 'DataGridView' in the format: E.g. "Item One x2".
+        {
+            gridView.Rows.Clear();
+
+            foreach (KeyValuePair<Product_Item, int> pair in m_Items)
+            {
+                gridView.Rows.Add(pair.Key.name, pair.Value);
             }
         }
 

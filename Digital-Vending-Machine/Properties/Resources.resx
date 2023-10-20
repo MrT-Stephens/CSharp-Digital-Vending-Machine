@@ -124,6 +124,9 @@
   <data name="Fruittella_Duo_Stix" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resourses\Fruittella-Duo-Stix.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Graze_Dark_Chocolate_Cherry_Tart" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Graze-Dark-Chocolate-Cherry-Tart.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Haribo_Giant_Strawbs_Fruit_Gums" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resourses\Haribo-Giant-Strawbs-Fruit-Gums.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -150,6 +153,42 @@
   </data>
   <data name="Maynards_Bassetts_Wine_Gums_Juicies" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resourses\Maynards-Bassetts-Wine-Gums-Juicies.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Monster_Aussie_Lemonade_Energy___Juice" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Monster-Aussie-Lemonade-Energy-&amp;-Juice.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Monster_Energy_Drink_Lewis_Hamilton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Monster-Energy-Drink-Lewis-Hamilton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Monster_Energy_Drink_Mango_Loco" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Monster-Energy-Drink-Mango-Loco.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Monster_Energy_Drink_Monarch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Monster-Energy-Drink-Monarch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Monster_Energy_Drink_Pipeline_Punch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Monster-Energy-Drink-Pipeline-Punch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Monster_Energy_Drink_Ultra" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Monster-Energy-Drink-Ultra.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Monster_Energy_Drink_Ultra_Fiesta" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Monster-Energy-Drink-Ultra-Fiesta.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Monster_Energy_Drink_Ultra_Gold" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Monster-Energy-Drink-Ultra-Gold.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Monster_Energy_Drink_Ultra_Rosa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Monster-Energy-Drink-Ultra-Rosa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Monster_Energy_Drink_Ultra_Watermelon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Monster-Energy-Drink-Ultra-Watermelon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pringles_Pop___Go_Original" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Pringles-Pop-_-Go-Original.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pringles_Sour_Cream___Onion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Pringles-Sour-Cream-_-Onion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Rowntrees_Fruit_Gums" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resourses\Rowntrees-Fruit-Gums.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -180,6 +219,27 @@
   </data>
   <data name="Swizzels_Luscious_Lollies" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resourses\Swizzels-Luscious-Lollies.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Twix_Kingsize_Bar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Twix-Kingsize-Bar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Twix_Xtra_White_Chocolate_Biscuit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Twix-Xtra-White-Chocolate-Biscuit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Walkers_Baked_Cheese___Onion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Walkers-Baked-Cheese-_-Onion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Walkers_Baked_Salted" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Walkers-Baked-Salted.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Walkers_Max_Punchy_Paprika" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Walkers-Max-Punchy-Paprika.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Walkers_Monster_Munch_Pickled_Onion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Walkers-Monster-Munch-Pickled-Onion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Walkers_Sensations_Thai_Sweet_Chilli" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resourses\Walkers-Sensations-Thai-Sweet-Chilli.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_10p" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resourses\10p.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
