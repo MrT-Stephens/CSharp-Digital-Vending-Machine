@@ -1,6 +1,6 @@
 
 <h1 align="center">
-  <img src="https://github.com/MrT-Stephens/Cpp-Drawing-Application/blob/master/Images/Drawing-App-Icon.png" alt="drawing" width="200"/>
+  <img src="https://github.com/MrT-Stephens/Digital-Vending-Machine/blob/master/Images/vending-machine.png" alt="drawing" width="200"/>
   <br>
   C# Digital Vending Machine
   <br>
@@ -13,23 +13,15 @@
   <a href="#installation">Installation</a>
 </p>
 
-<p align="center">
-  <img src="https://github.com/MrT-Stephens/Cpp-Drawing-Application/blob/master/Images/Drawing-App-1.png" alt="drawing" align="center"/>
-</p>
+<div align="center">
+  <video src="https://github.com/MrT-Stephens/Digital-Vending-Machine/assets/92452307/1e7ae77f-427d-47be-9822-adfeae6dfbb3"/>
+</div>
+
+
 
 ## Key Features
 
-- Different tools to allow you to draw different shapes:
-  * Pen tool: Allows you to draw anything.
-  * Circle tool: Allows you to draw circles.
-  * Rectangle tool: Allows you to draw rectangles.
-  * Straight line tool: Allows you to draw straight lines.
-  * Rounded rectangle tools: Allows you to draw rounded rectangles.
-- Colour changing buttons.
-- When using either a pen tool or a straight line tool you can change the pen thickness.
-- Export the canvas to a PNG with a transparent background.
-- Save the canvas to a '.drw' file which is a compressed archive of an XML document storing the object's data.
-- You can open the '.drw' file and input the objects back into the canvas.
+
 
 ## Installation
 
@@ -37,7 +29,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [V
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/MrT-Stephens/Cpp-Drawing-Application.git
+$ git clone https://github.com/MrT-Stephens/Digital-Vending-Machine.git
 
 # Go into the repository
 $ cd Cpp-Drawing-Application
