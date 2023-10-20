@@ -14,7 +14,7 @@
 </p>
 
 <div align="center">
-  <video src="https://github.com/MrT-Stephens/CSharp-Digital-Vending-Machine/assets/92452307/1e7ae77f-427d-47be-9822-adfeae6dfbb3"/>
+  <video src="https://github.com/MrT-Stephens/CSharp-Digital-Vending-Machine/blob/master/Images/Digital-Vending-Machine.mp4"/>
 </div>
 
 
