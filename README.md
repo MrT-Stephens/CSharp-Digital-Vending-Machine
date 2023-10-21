@@ -14,7 +14,7 @@
 </p>
 
 <div align="center">
-  <video src=""/>
+  <video src="https://github.com/MrT-Stephens/CSharp-Digital-Vending-Machine/assets/92452307/df413820-4f9f-4656-86ef-1eeede66972e"/>
 </div>
     
 ## Key Features
