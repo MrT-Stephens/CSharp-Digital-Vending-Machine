@@ -47,7 +47,6 @@ namespace Digital_Vending_Machine
             this.Text = m_Name;
             this.Enabled = true;
             this.BackColor = Color.White;
-            this.MinimumSize = new Size(200, 200);
             this.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
 
             // Add the button to the group box controls
@@ -78,6 +77,7 @@ namespace Digital_Vending_Machine
 
             m_Button.Text = m_Quantity.ToString();
             this.Text = $"{m_Price:C} • {m_Name}";
+            this.MinimumSize = new Size(200, 250);
 
             m_Button.Click += new EventHandler(OnButtonClick);
         }

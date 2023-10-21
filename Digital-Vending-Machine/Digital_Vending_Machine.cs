@@ -321,12 +321,17 @@ namespace Digital_Vending_Machine
         {                                           // It makes sure that the shop items size correctly but also scrolls correctly.
             int height = 0;
 
-            foreach (Control control in m_ProductItems)
+            // Calculate the total height of all items
+            foreach (Control control in m_ShopItemsLayout.Controls)
             {
                 height += control.MinimumSize.Height;
             }
 
-            m_ShopItemsLayout.AutoScrollMinSize = new Size(300, height / (m_ShopItemsLayout.RowCount < 5 ? 5 : m_ShopItemsLayout.RowCount / 5));
+            // Checks if the panel height is greater than the minimum heights.
+            height = Math.Max(m_ShopItemsLayout.Height / 3, height / 3);
+
+            
+            m_ShopItemsLayout.AutoScrollMinSize = new Size(300, (int)Math.Floor(height * 1.75));
         }
 
         private void OnClickOrDrop(object sender, TypeEventArgs<double> e)  // Event handler for either a coin click or a coin drag / drop.
