@@ -122,11 +122,20 @@ namespace Digital_Vending_Machine
 
         public void PrintBasketTo(DataGridView gridView)    // Prints all items in the basket to a 'DataGridView' in the format: E.g. "Item One x2".
         {
+            int selectedRow = (gridView.SelectedRows.Count > 0) ? gridView.SelectedRows[0].Index : -1;
+
             gridView.Rows.Clear();
 
             foreach (KeyValuePair<Product_Item, int> pair in m_Items)
             {
                 gridView.Rows.Add(pair.Key.name, pair.Value);
+            }
+
+            gridView.ClearSelection();
+
+            if (selectedRow != -1 && selectedRow < m_Items.Count)
+            {
+                gridView.Rows[selectedRow].Selected = true;
             }
         }
 

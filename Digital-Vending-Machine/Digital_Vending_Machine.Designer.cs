@@ -54,10 +54,10 @@
             // 
             this.m_CheckoutButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.m_CheckoutButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.m_CheckoutButton.Location = new System.Drawing.Point(868, 788);
-            this.m_CheckoutButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.m_CheckoutButton.Location = new System.Drawing.Point(651, 640);
+            this.m_CheckoutButton.Margin = new System.Windows.Forms.Padding(2);
             this.m_CheckoutButton.Name = "m_CheckoutButton";
-            this.m_CheckoutButton.Size = new System.Drawing.Size(302, 52);
+            this.m_CheckoutButton.Size = new System.Drawing.Size(226, 42);
             this.m_CheckoutButton.TabIndex = 1;
             this.m_CheckoutButton.Text = "Checkout";
             this.m_CheckoutButton.UseVisualStyleBackColor = true;
@@ -67,10 +67,10 @@
             // 
             this.m_CancelOrderButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.m_CancelOrderButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.m_CancelOrderButton.Location = new System.Drawing.Point(868, 732);
-            this.m_CancelOrderButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.m_CancelOrderButton.Location = new System.Drawing.Point(651, 595);
+            this.m_CancelOrderButton.Margin = new System.Windows.Forms.Padding(2);
             this.m_CancelOrderButton.Name = "m_CancelOrderButton";
-            this.m_CancelOrderButton.Size = new System.Drawing.Size(302, 52);
+            this.m_CancelOrderButton.Size = new System.Drawing.Size(226, 42);
             this.m_CancelOrderButton.TabIndex = 3;
             this.m_CancelOrderButton.Text = "Cancel Order";
             this.m_CancelOrderButton.UseVisualStyleBackColor = true;
@@ -82,10 +82,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.m_ShopItemsPanel.AutoScroll = true;
-            this.m_ShopItemsPanel.Location = new System.Drawing.Point(16, 15);
-            this.m_ShopItemsPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.m_ShopItemsPanel.Location = new System.Drawing.Point(12, 12);
             this.m_ShopItemsPanel.Name = "m_ShopItemsPanel";
-            this.m_ShopItemsPanel.Size = new System.Drawing.Size(845, 825);
+            this.m_ShopItemsPanel.Size = new System.Drawing.Size(634, 670);
             this.m_ShopItemsPanel.TabIndex = 0;
             // 
             // m_BasketLabel
@@ -94,10 +93,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.m_BasketLabel.AutoSize = true;
             this.m_BasketLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.m_BasketLabel.Location = new System.Drawing.Point(869, 49);
-            this.m_BasketLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.m_BasketLabel.Location = new System.Drawing.Point(652, 40);
             this.m_BasketLabel.Name = "m_BasketLabel";
-            this.m_BasketLabel.Size = new System.Drawing.Size(73, 20);
+            this.m_BasketLabel.Size = new System.Drawing.Size(59, 16);
             this.m_BasketLabel.TabIndex = 4;
             this.m_BasketLabel.Text = "Basket:";
             // 
@@ -107,11 +105,10 @@
             this.m_PriceTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.m_PriceTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.m_PriceTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.m_PriceTextBox.Location = new System.Drawing.Point(868, 707);
-            this.m_PriceTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.m_PriceTextBox.Location = new System.Drawing.Point(651, 574);
             this.m_PriceTextBox.Name = "m_PriceTextBox";
             this.m_PriceTextBox.ReadOnly = true;
-            this.m_PriceTextBox.Size = new System.Drawing.Size(301, 19);
+            this.m_PriceTextBox.Size = new System.Drawing.Size(226, 15);
             this.m_PriceTextBox.TabIndex = 5;
             this.m_PriceTextBox.Text = "Total: £0.00";
             this.m_PriceTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -121,11 +118,10 @@
             this.m_StatusTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.m_StatusTextBox.BackColor = System.Drawing.Color.PaleGreen;
             this.m_StatusTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.m_StatusTextBox.Location = new System.Drawing.Point(868, 15);
-            this.m_StatusTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.m_StatusTextBox.Location = new System.Drawing.Point(651, 12);
             this.m_StatusTextBox.Name = "m_StatusTextBox";
             this.m_StatusTextBox.ReadOnly = true;
-            this.m_StatusTextBox.Size = new System.Drawing.Size(301, 26);
+            this.m_StatusTextBox.Size = new System.Drawing.Size(227, 22);
             this.m_StatusTextBox.TabIndex = 7;
             this.m_StatusTextBox.Text = "Please select your items";
             this.m_StatusTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -144,7 +140,8 @@
             this.m_BasketDataGridVeiw.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.m_ProductNameColumn,
             this.m_ProductQuantityColumn});
-            this.m_BasketDataGridVeiw.Location = new System.Drawing.Point(868, 72);
+            this.m_BasketDataGridVeiw.Location = new System.Drawing.Point(651, 58);
+            this.m_BasketDataGridVeiw.Margin = new System.Windows.Forms.Padding(2);
             this.m_BasketDataGridVeiw.MultiSelect = false;
             this.m_BasketDataGridVeiw.Name = "m_BasketDataGridVeiw";
             this.m_BasketDataGridVeiw.ReadOnly = true;
@@ -152,8 +149,9 @@
             this.m_BasketDataGridVeiw.RowHeadersWidth = 51;
             this.m_BasketDataGridVeiw.RowTemplate.Height = 24;
             this.m_BasketDataGridVeiw.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.m_BasketDataGridVeiw.Size = new System.Drawing.Size(301, 628);
+            this.m_BasketDataGridVeiw.Size = new System.Drawing.Size(226, 510);
             this.m_BasketDataGridVeiw.TabIndex = 8;
+            this.m_BasketDataGridVeiw.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.m_BasketDataGridVeiw_CellMouseDown);
             // 
             // m_ProductNameColumn
             // 
@@ -172,13 +170,13 @@
             this.m_ProductQuantityColumn.MinimumWidth = 6;
             this.m_ProductQuantityColumn.Name = "m_ProductQuantityColumn";
             this.m_ProductQuantityColumn.ReadOnly = true;
-            this.m_ProductQuantityColumn.Width = 84;
+            this.m_ProductQuantityColumn.Width = 71;
             // 
             // Digital_Vending_Machine
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1182, 853);
+            this.ClientSize = new System.Drawing.Size(888, 700);
             this.Controls.Add(this.m_BasketDataGridVeiw);
             this.Controls.Add(this.m_StatusTextBox);
             this.Controls.Add(this.m_PriceTextBox);
@@ -187,8 +185,8 @@
             this.Controls.Add(this.m_CancelOrderButton);
             this.Controls.Add(this.m_CheckoutButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MinimumSize = new System.Drawing.Size(1200, 900);
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.MinimumSize = new System.Drawing.Size(904, 739);
             this.Name = "Digital_Vending_Machine";
             this.Text = "30048598 • Digital Vending Machine";
             ((System.ComponentModel.ISupportInitialize)(this.m_BasketDataGridVeiw)).EndInit();

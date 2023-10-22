@@ -286,7 +286,12 @@ namespace Digital_Vending_Machine
 
             m_TitleDateTimeTimer = new Timer();
             m_TitleDateTimeTimer.Interval = 1000;
-            m_TitleDateTimeTimer.Tick += TitleDateTimeTimer_Tick;
+
+            m_TitleDateTimeTimer.Tick += (sender, e) =>     // Title time and date event handler function.
+            {                                               // Updates the date and time in the title every 1000ms (1s).
+                this.Text = $"{m_Title} • {DateTime.Now.ToString("dd/MM/yyyy")} • {DateTime.Now.ToString("HH:mm:ss")}";
+            };
+
             m_TitleDateTimeTimer.Start();
         }
 
@@ -412,14 +417,9 @@ namespace Digital_Vending_Machine
             }
         }
 
-        private void TitleDateTimeTimer_Tick(object sender, EventArgs e)    // Title time and date event handler function.
-        {                                                                   // Updates the date and time in the title every 1000ms (1s).
-            this.Text = $"{m_Title} • {DateTime.Now.ToString("dd/MM/yyyy")} • {DateTime.Now.ToString("HH:mm:ss")}";
-        }
-
         private void CancelOrderButton_Click(object sender, EventArgs e)    // Cancel button event handler function.
         {                                                                   // Will display a dialog if there is items in the basket to ask if they are sure.
-            if (m_BasketDataGridVeiw.Rows.Count == 0)                           // Clears the basket, updates total text box, and resets the slide out panel.
+            if (m_BasketDataGridVeiw.Rows.Count == 0)                       // Clears the basket, updates total text box, and resets the slide out panel.
             {
                 return;
             }
@@ -438,6 +438,15 @@ namespace Digital_Vending_Machine
                     m_CheckoutButton.Enabled = !m_CheckoutButton.Enabled;
                     m_BasketDataGridVeiw.Enabled = !m_BasketDataGridVeiw.Enabled;
                 }
+            }
+        }
+
+        private void m_BasketDataGridVeiw_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right && e.RowIndex != -1)
+            {
+                m_BasketDataGridVeiw.ClearSelection();
+                m_BasketDataGridVeiw.Rows[e.RowIndex].Selected = true;
             }
         }
 
