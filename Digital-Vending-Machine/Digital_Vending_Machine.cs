@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq.Expressions;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
@@ -448,6 +449,24 @@ namespace Digital_Vending_Machine
                 m_BasketDataGridVeiw.ClearSelection();
                 m_BasketDataGridVeiw.Rows[e.RowIndex].Selected = true;
             }
+        }
+
+        private void m_InfoButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                $"Welcome to the digital vending machine{Environment.NewLine}{Environment.NewLine}" +
+                $"\tMain Features{Environment.NewLine}{Environment.NewLine}" +
+                $"1. Simply select the items you want to purchase.{Environment.NewLine}" +
+                $"2. Click the checkout button. Then a checkout panel will slide out.{Environment.NewLine}" +
+                $"3. Once the checkout panel has slid out, drag coins/notes to the coin slot and pay for the order.{Environment.NewLine}" +
+                $"4. Once you have paid for your order, the checkout panel will slide back in.{Environment.NewLine}" +
+                $"5. Once the order has been payed for a message box will display your change.{Environment.NewLine}{Environment.NewLine}" +
+                $"\tOther Features{Environment.NewLine}{Environment.NewLine}" +
+                $"1. You can right click on an item in the basket to remove it.{Environment.NewLine}" +
+                $"2. You can cancel your order at any time by clicking the cancel order button.{Environment.NewLine}" +
+                $"3. You can click on the info button to view this message again.{Environment.NewLine}" +
+                $"4. By clicking on one of the headers of the basket you can sort the basket by that column."
+                , "Infomation", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         #endregion
