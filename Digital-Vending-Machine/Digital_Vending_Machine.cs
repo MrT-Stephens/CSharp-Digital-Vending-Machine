@@ -442,8 +442,8 @@ namespace Digital_Vending_Machine
             }
         }
 
-        private void m_BasketDataGridVeiw_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
-        {
+        private void m_BasketDataGridVeiw_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)    // Basket data grid view cell mouse down event handler.
+        {                                                                                                   // Handles the right click event on the basket data grid view.
             if (e.Button == MouseButtons.Right && e.RowIndex != -1)
             {
                 m_BasketDataGridVeiw.ClearSelection();
@@ -451,8 +451,8 @@ namespace Digital_Vending_Machine
             }
         }
 
-        private void m_InfoButton_Click(object sender, EventArgs e)
-        {
+        private void m_InfoButton_Click(object sender, EventArgs e)     // Info button event handler function.
+        {                                                               // Displays a message box with information about the application.                        
             MessageBox.Show(
                 $"Welcome to the digital vending machine{Environment.NewLine}{Environment.NewLine}" +
                 $"\tMain Features{Environment.NewLine}{Environment.NewLine}" +
