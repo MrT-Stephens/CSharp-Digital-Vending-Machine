@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq.Expressions;
 using System.Windows.Forms;
@@ -439,6 +440,8 @@ namespace Digital_Vending_Machine
                     m_CheckoutButton.Enabled = !m_CheckoutButton.Enabled;
                     m_BasketDataGridVeiw.Enabled = !m_BasketDataGridVeiw.Enabled;
                 }
+
+                
             }
         }
 
@@ -453,8 +456,9 @@ namespace Digital_Vending_Machine
 
         private void m_InfoButton_Click(object sender, EventArgs e)     // Info button event handler function.
         {                                                               // Displays a message box with information about the application.                        
-            MessageBox.Show(
+            DialogResult result = MessageBox.Show(this,
                 $"Welcome to the digital vending machine{Environment.NewLine}{Environment.NewLine}" +
+                $"Created by: Thomas Stephens{Environment.NewLine}{Environment.NewLine}" +
                 $"\tMain Features{Environment.NewLine}{Environment.NewLine}" +
                 $"1. Simply select the items you want to purchase.{Environment.NewLine}" +
                 $"2. Click the checkout button. Then a checkout panel will slide out.{Environment.NewLine}" +
@@ -465,8 +469,43 @@ namespace Digital_Vending_Machine
                 $"1. You can right click on an item in the basket to remove it.{Environment.NewLine}" +
                 $"2. You can cancel your order at any time by clicking the cancel order button.{Environment.NewLine}" +
                 $"3. You can click on the info button to view this message again.{Environment.NewLine}" +
-                $"4. By clicking on one of the headers of the basket you can sort the basket by that column."
-                , "Infomation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                $"4. By clicking on one of the headers of the basket you can sort the basket by that column.{Environment.NewLine}{Environment.NewLine}" +
+                $"\tReport an issue{Environment.NewLine}{Environment.NewLine}" +
+                $"If you have any issues with the application you can report them to me via GitHub, would you like to open the GitHub link?"
+                , "Infomation", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+            if (result == DialogResult.Yes) 
+            {
+                try
+                {
+                    Process.Start("https://github.com/MrT-Stephens");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, $"Failed to open browser client.{Environment.NewLine}{Environment.NewLine}{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys.Control | Keys.L))
+            {
+                try
+                {
+                    Process.Start($"{Environment.CurrentDirectory}\\{s_LogOrdersFileName}.txt");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(this, $"Failed to open notepad client.{Environment.NewLine}{Environment.NewLine}{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else if (keyData == Keys.Escape)
+            {
+                Close();
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         #endregion

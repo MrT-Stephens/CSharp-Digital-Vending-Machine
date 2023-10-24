@@ -156,7 +156,7 @@ namespace Digital_Vending_Machine
         {
             if (e.Button == MouseButtons.Left)
             {
-                m_Button.DoDragDrop(this.value, DragDropEffects.Copy);
+                m_Button.DoDragDrop(m_Value, DragDropEffects.Copy);
             }
         }
 
