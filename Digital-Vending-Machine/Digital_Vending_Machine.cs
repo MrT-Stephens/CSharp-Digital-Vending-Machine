@@ -152,28 +152,30 @@ namespace Digital_Vending_Machine
 
         private void SetUpShopItems()
         {
+            // Sets a constant amount of the x-axis which is three.
             m_ShopItemsLayout.ColumnCount = 3;
             m_ShopItemsLayout.Dock = DockStyle.Fill;
 
+            // Calculates the number of needed rows, based on the x-axis being a constant three.
             int numRows = (int)Math.Ceiling((double)m_ProductItems.Count / m_ShopItemsLayout.ColumnCount);
 
             m_ShopItemsLayout.RowCount = numRows;
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 3; i++)     // Adding column formatting so everything scales correctly.
             {
                 m_ShopItemsLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100.0f / 3.0f));
             }
 
-            for (int i = 0; i < numRows; i++)
+            for (int i = 0; i < numRows; i++)   // Adding row formatting so everything scales correctly.
             {
                 m_ShopItemsLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100.0f / (float)numRows));
             }
 
-            foreach (Product_Item control in m_ProductItems)
+            foreach (Product_Item control in m_ProductItems)    // Adding the product item's to the shop item layout and binding the event handler.
             {
                 m_ShopItemsLayout.Controls.Add(control);
 
-                control.click += (sender, e) =>
+                control.click += (sender, e) => // Binding to the click event handler with a lambda.
                 {
                     Product_Item productItem = (Product_Item)sender;
 
@@ -190,7 +192,7 @@ namespace Digital_Vending_Machine
                 };
             }
 
-            m_ShopItemsPanel.Controls.Add(m_ShopItemsLayout);
+            m_ShopItemsPanel.Controls.Add(m_ShopItemsLayout);   // Adding the shop item layout to the forms controls.
         }
 
         private void SetUpSlideOutPanel()
@@ -206,39 +208,101 @@ namespace Digital_Vending_Machine
             // Set up the slide out timer
             m_SlideOutTimer = new Timer();
             m_SlideOutTimer.Interval = 1;
-            m_SlideOutTimer.Tick += SlideOutTimer_Tick;
+
+            m_SlideOutTimer.Tick += (sender, e) =>  // Binding to the tick event handler with a lambda.
+            {
+                int targetWidth = m_IsPanelVisible ? 0 : (int)Math.Round(m_ShopItemsPanel.Width / 100.0) * 100;
+                // ↑↑↑↑ Rounds the shop items panel width to the nearest 100.
+                // ↑↑↑↑ So we can add a large amount of pixels onto the width to simulate the panel moving.
+
+                if (m_SlideOutPanel.Width != targetWidth)   // If the slide out panel width is not equal to the target width.
+                {
+                    if (m_IsPanelVisible)
+                    {
+                        m_SlideOutPanel.Width -= ((int)Math.Round(m_ShopItemsPanel.Width / 100.0) * 100) / 4;
+                        // ↑↑↑↑ Minuses the shop items panel width divided by four from the slide out panel width.
+                    }
+                    else
+                    {
+                        m_SlideOutPanel.Width += targetWidth / 4;   // Minuses the 'targetWidth' divided by four.
+                    }
+
+                    m_SlideOutPanel.BringToFront();
+                }
+                else
+                {
+                    if (!m_IsPanelVisible)  // If the panel is not visible, it will equal the slide out panels width to the shop items panel width.
+                    {                       // This is due to us rounding the shop panels width to the nearest 100.
+                        m_SlideOutPanel.Width = m_ShopItemsPanel.Width;
+                    }
+
+                    m_SlideOutTimer.Stop();
+                    m_IsPanelVisible = !m_IsPanelVisible;
+                }
+            };
 
             // Set up the panel items
             m_SlideOutLayout = new TableLayoutPanel();
             m_SlideOutLayout.Dock = DockStyle.Fill;
             m_SlideOutLayout.ColumnCount = 3;
 
+            // Calculating the number of rows needed, when there is a constant size of three on the x-axis.
             int numRows = (int)Math.Ceiling((double)m_CoinItems.Count / m_SlideOutLayout.ColumnCount);
 
             m_SlideOutLayout.RowCount = numRows;
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 3; i++)     // Adding column formatting so everything scales correctly.
             {
                 m_SlideOutLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100.0f / 3.0f));
             }
 
-            for (int i = 0; i < numRows; i++)
+            for (int i = 0; i < numRows; i++)   // Adding row formatting so everything scales correctly.
             {
                 m_SlideOutLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100.0f / numRows));
             }
 
-            foreach (Coin_Item coin in m_CoinItems)
+            foreach (Coin_Item coin in m_CoinItems) // Adding the coin items to the slide out layout.
             {
                 m_SlideOutLayout.Controls.Add(coin);
-                coin.click += OnClickOrDrop;
             }
 
             m_PaymentBox = new Coin_Slot(Properties.Resources.Coin_Slot);
-            m_PaymentBox.drop += OnClickOrDrop;
 
-            m_SlideOutLayout.Controls.Add(m_PaymentBox);
+            m_PaymentBox.drop += (sender, e) => // Binding to the drop event handler with a lambda.
+            {
+                m_BasketHander.MinusAmount(e.variable); // Minuses the coin value from the total basket cost.
 
-            m_SlideOutPanel.Controls.Add(m_SlideOutLayout);
+                m_PriceTextBox.Text = $"Total: {m_BasketHander.total:C}";
+
+                if (m_BasketHander.total > 0)
+                {
+                    return;
+                }
+                else if (m_BasketHander.total == 0)
+                {
+                    MessageBox.Show(this, "Thank you for your purchase!", "Purchase Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show(this, $"Thank you for your purchase! Your change is {Math.Abs(m_BasketHander.total):C}", "Purchase Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                m_BasketHander.PrintBasketToFile(s_LogOrdersFileName);  // Logs the order to a log file.
+
+                // Resets the application, but not the item quantities.
+                m_StatusTextBox.Text = "Please select your items";
+                m_BasketDataGridVeiw.Rows.Clear();
+                m_PriceTextBox.Text = $"Total: {0.00:C}";
+                m_BasketHander.Clear();
+                m_SlideOutTimer.Start();    // Slides the slide out panel back in.
+                m_ShopItemsPanel.Enabled = !m_ShopItemsPanel.Enabled;
+                m_CheckoutButton.Enabled = !m_CheckoutButton.Enabled;
+                m_BasketDataGridVeiw.Enabled = !m_BasketDataGridVeiw.Enabled;
+            };
+
+            m_SlideOutLayout.Controls.Add(m_PaymentBox);    // Adding the payment section to the slide out layout.
+
+            m_SlideOutPanel.Controls.Add(m_SlideOutLayout); // Adding the slide out layout to the forms controls.
         }
 
         private void SetUpListBoxContextMenu()
@@ -247,7 +311,7 @@ namespace Digital_Vending_Machine
             m_DataGridViewRemoveAll = new ToolStripMenuItem("Remove All");
             m_DataGridViewRemoveOne = new ToolStripMenuItem("Remove One");
 
-            m_DataGridViewRemoveAll.Click += (sender, e) =>
+            m_DataGridViewRemoveAll.Click += (sender, e) => // Binding to the remove all click event handler with a lambda.
             {
                 if (m_BasketHander.count > 0)
                 {
@@ -261,7 +325,7 @@ namespace Digital_Vending_Machine
                 }
             };
 
-            m_DataGridViewRemoveOne.Click += (sender, e) =>
+            m_DataGridViewRemoveOne.Click += (sender, e) => // Binding to the remove one click event handler with a lambda.
             {
                 if (m_BasketHander.count > 0)
                 {
@@ -278,7 +342,7 @@ namespace Digital_Vending_Machine
             m_DataGridViewContextMenu.Items.Add(m_DataGridViewRemoveAll);
             m_DataGridViewContextMenu.Items.Add(m_DataGridViewRemoveOne);
 
-            m_BasketDataGridVeiw.ContextMenuStrip = m_DataGridViewContextMenu;
+            m_BasketDataGridVeiw.ContextMenuStrip = m_DataGridViewContextMenu;  // Setting the basket data grid veiw's context menu to then one just created.
         }
 
         private void SetUpTitleDateTime()
@@ -289,7 +353,7 @@ namespace Digital_Vending_Machine
             m_TitleDateTimeTimer = new Timer();
             m_TitleDateTimeTimer.Interval = 1000;
 
-            m_TitleDateTimeTimer.Tick += (sender, e) =>     // Title time and date event handler function.
+            m_TitleDateTimeTimer.Tick += (sender, e) =>     // Title time and date event handler lambda.
             {                                               // Updates the date and time in the title every 1000ms (1s).
                 this.Text = $"{m_Title} • {DateTime.Now.ToString("dd/MM/yyyy")} • {DateTime.Now.ToString("HH:mm:ss")}";
             };
@@ -299,10 +363,12 @@ namespace Digital_Vending_Machine
 
         private void SetUpTimeoutTimer()
         {
+            // Setting up the timeout timer with a interval of 180,000ms (3 minutes).
             m_TimeoutTimer = new Timer();
             m_TimeoutTimer.Interval = 180000;
-            m_TimeoutTimer.Tick += (sender, e) =>
-            {
+
+            m_TimeoutTimer.Tick += (sender, e) =>   // Binding to the tick event handler with a lambda.
+            {                                       // Will return back to an empty basket if called.
                 m_TimeoutTimer.Stop();
 
                 m_StatusTextBox.Text = "Please select your items";
@@ -337,40 +403,8 @@ namespace Digital_Vending_Machine
             // Checks if the panel height is greater than the minimum heights.
             height = Math.Max(m_ShopItemsLayout.Height / 3, height / 3);
 
-            
+            // Adds the new virtual scroll area size to the shop items layout.
             m_ShopItemsLayout.AutoScrollMinSize = new Size(300, (int)Math.Floor(height * 1.75));
-        }
-
-        private void OnClickOrDrop(object sender, TypeEventArgs<double> e)  // Event handler for either a coin click or a coin drag / drop.
-        {
-            m_BasketHander.MinusAmount(e.variable); // Minuses the coin value from the total basket cost.
-
-            m_PriceTextBox.Text = $"Total: {m_BasketHander.total:C}";
-
-            if (m_BasketHander.total > 0)
-            {
-                return;
-            }
-            else if (m_BasketHander.total == 0)
-            {
-                MessageBox.Show(this, "Thank you for your purchase!", "Purchase Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else if (m_BasketHander.total < 0)
-            {
-                MessageBox.Show(this, $"Thank you for your purchase! Your change is {Math.Abs(m_BasketHander.total):C}", "Purchase Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
-            m_BasketHander.PrintBasketToFile(s_LogOrdersFileName);  // Logs the order to a log file.
-
-            // Resets the application, but not the item quantities.
-            m_StatusTextBox.Text = "Please select your items";
-            m_BasketDataGridVeiw.Rows.Clear();
-            m_PriceTextBox.Text = $"Total: {0.00:C}";
-            m_BasketHander.Clear();
-            m_SlideOutTimer.Start();    // Slides the slide out panel back in.
-            m_ShopItemsPanel.Enabled = !m_ShopItemsPanel.Enabled;
-            m_CheckoutButton.Enabled = !m_CheckoutButton.Enabled;
-            m_BasketDataGridVeiw.Enabled = !m_BasketDataGridVeiw.Enabled;
         }
 
         private void Checkout_Button_Click(object sender, EventArgs e)  // Checkout button event handler.
@@ -385,38 +419,6 @@ namespace Digital_Vending_Machine
             m_ShopItemsPanel.Enabled = !m_ShopItemsPanel.Enabled;
             m_CheckoutButton.Enabled = !m_CheckoutButton.Enabled;
             m_BasketDataGridVeiw.Enabled = !m_BasketDataGridVeiw.Enabled;
-        }
-
-        private void SlideOutTimer_Tick(object sender, EventArgs e) // Slide out panel timer event handler, gets called every 1ms.
-        {
-            int targetWidth = m_IsPanelVisible ? 0 : (int)Math.Round(m_ShopItemsPanel.Width / 100.0) * 100;
-                                                     // ↑↑↑↑ Rounds the shop items panel width to the nearest 100.
-                                                     // ↑↑↑↑ So we can add a large amount of pixels onto the width to simulate the panel moving.
-
-            if (m_SlideOutPanel.Width != targetWidth)   // If the slide out panel width is not equal to the target width.
-            {
-                if (m_IsPanelVisible)
-                {
-                    m_SlideOutPanel.Width -= ((int)Math.Round(m_ShopItemsPanel.Width / 100.0) * 100) / 4;
-                                             // ↑↑↑↑ Minuses the shop items panel width divided by four from the slide out panel width.
-                }
-                else
-                {
-                    m_SlideOutPanel.Width += targetWidth / 4;   // Minuses the 'targetWidth' divided by four.
-                }
-
-                m_SlideOutPanel.BringToFront();
-            }
-            else
-            {
-                if (!m_IsPanelVisible)  // If the panel is not visible, it will equal the slide out panels width to the shop items panel width.
-                {                       // This is due to us rounding the shop panels width to the nearest 100.
-                    m_SlideOutPanel.Width = m_ShopItemsPanel.Width;
-                }
-
-                m_SlideOutTimer.Stop();
-                m_IsPanelVisible = !m_IsPanelVisible;
-            }
         }
 
         private void CancelOrderButton_Click(object sender, EventArgs e)    // Cancel button event handler function.
@@ -445,7 +447,7 @@ namespace Digital_Vending_Machine
             }
         }
 
-        private void m_BasketDataGridVeiw_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)    // Basket data grid view cell mouse down event handler.
+        private void BasketDataGridVeiw_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)    // Basket data grid view cell mouse down event handler.
         {                                                                                                   // Handles the right click event on the basket data grid view.
             if (e.Button == MouseButtons.Right && e.RowIndex != -1)
             {
@@ -454,7 +456,7 @@ namespace Digital_Vending_Machine
             }
         }
 
-        private void m_InfoButton_Click(object sender, EventArgs e)     // Info button event handler function.
+        private void InfoButton_Click(object sender, EventArgs e)     // Info button event handler function.
         {                                                               // Displays a message box with information about the application.                        
             DialogResult result = MessageBox.Show(this,
                 $"Welcome to the digital vending machine{Environment.NewLine}{Environment.NewLine}" +
@@ -487,9 +489,9 @@ namespace Digital_Vending_Machine
             }
         }
 
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            if (keyData == (Keys.Control | Keys.L))
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)    // Event handler for key events on the whole form.
+        {                                                                       // If the key event is 'Crtl+l' will open the log file in the systems default for text documents.
+            if (keyData == (Keys.Control | Keys.L))                             // If the key event is 'Esc' will close the form.
             {
                 try
                 {

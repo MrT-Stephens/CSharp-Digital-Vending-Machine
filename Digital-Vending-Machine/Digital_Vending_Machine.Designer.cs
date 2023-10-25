@@ -156,7 +156,7 @@
             this.m_BasketDataGridVeiw.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.m_BasketDataGridVeiw.Size = new System.Drawing.Size(301, 628);
             this.m_BasketDataGridVeiw.TabIndex = 8;
-            this.m_BasketDataGridVeiw.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.m_BasketDataGridVeiw_CellMouseDown);
+            this.m_BasketDataGridVeiw.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.BasketDataGridVeiw_CellMouseDown);
             // 
             // m_ProductNameColumn
             // 
@@ -187,7 +187,7 @@
             this.m_InfoButton.Size = new System.Drawing.Size(53, 53);
             this.m_InfoButton.TabIndex = 9;
             this.m_InfoButton.UseVisualStyleBackColor = true;
-            this.m_InfoButton.Click += new System.EventHandler(this.m_InfoButton_Click);
+            this.m_InfoButton.Click += new System.EventHandler(this.InfoButton_Click);
             // 
             // Digital_Vending_Machine
             // 
