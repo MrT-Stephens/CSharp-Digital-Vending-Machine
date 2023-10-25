@@ -456,7 +456,7 @@ namespace Digital_Vending_Machine
             }
         }
 
-        private void InfoButton_Click(object sender, EventArgs e)     // Info button event handler function.
+        private void InfoButton_Click(object sender, EventArgs e)       // Info button event handler function.
         {                                                               // Displays a message box with information about the application.                        
             DialogResult result = MessageBox.Show(this,
                 $"Welcome to the digital vending machine{Environment.NewLine}{Environment.NewLine}" +
