@@ -278,13 +278,13 @@ namespace Digital_Vending_Machine
                 {
                     return;
                 }
-                else if (m_BasketHander.total == 0)
+                else if (m_BasketHander.total < 0)
                 {
-                    MessageBox.Show(this, "Thank you for your purchase!", "Purchase Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(this, $"Thank you for your purchase! Your change is {Math.Abs(m_BasketHander.total):C}", "Purchase Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show(this, $"Thank you for your purchase! Your change is {Math.Abs(m_BasketHander.total):C}", "Purchase Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(this, "Thank you for your purchase!", "Purchase Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
                 m_BasketHander.PrintBasketToFile(s_LogOrdersFileName);  // Logs the order to a log file.
