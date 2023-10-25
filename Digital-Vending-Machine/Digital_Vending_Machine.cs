@@ -442,8 +442,6 @@ namespace Digital_Vending_Machine
                     m_CheckoutButton.Enabled = !m_CheckoutButton.Enabled;
                     m_BasketDataGridVeiw.Enabled = !m_BasketDataGridVeiw.Enabled;
                 }
-
-                
             }
         }
 
