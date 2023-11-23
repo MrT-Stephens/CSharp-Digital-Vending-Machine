@@ -19,6 +19,11 @@
     
 ## Key Features
 
+* Can dynamically add/remove items for the show panel.
+* Clicking on an item will add the item to the basket and increase the total price of the order.
+* Clicking the checkout button will slide out a payment panel.
+* 
+
 ## Installation
 
 To clone and run this application, you'll need [Git](https://git-scm.com) and [Visual Studio](https://visualstudio.microsoft.com/). You can either clone the respiratory directly in [Visual Studio](https://visualstudio.microsoft.com/) or run this in your command line:
