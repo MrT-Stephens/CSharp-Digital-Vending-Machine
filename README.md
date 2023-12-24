@@ -22,7 +22,7 @@
 * Can dynamically add/remove items for the show panel.
 * Clicking on an item will add the item to the basket and increase the total price of the order.
 * Clicking the checkout button will slide out a payment panel.
-* 
+* Dragging coins to the coin slot in the payment panel allows the user to pay for their order.
 
 ## Installation
 
